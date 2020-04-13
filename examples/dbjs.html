@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>DB.JS on IndexedDB Shim</title>
+        <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon" />
+        <script src="../dist/indexeddbshim.min.js"></script>
+        <script>
+            var server;
+            window.shimIndexedDB && window.shimIndexedDB.__useShim();
+            function write (msg) {
+                document.querySelector('#log').textContent += msg + '\n';
+            }
+        </script>
+        <script src="https://raw.githack.com/aaronpowell/db.js/master/dist/db.js"></script>
+    </head>
+    <body>
+        <div class="splash">
+            <h1>db.js with IndexedDB Shim</h1>
+            <p>
+                <ul>
+                    <li>
+                        DB.JS DB - <a href="http://aaronpowell.github.com/db.js/">http://aaronpowell.github.com/db.js/</a>
+                    </li>
+                    <li>
+                        IndexedDB Polyfill - <a href="http://nparashuram.com/IndexedDBShim/">http://nparashuram.com/IndexedDBShim/</a>
+                    </li>
+                </ul>
+            </p>
+        </div>
+        <ul>
+            <b>DBJS Examples</b>
+            <script>
+                db.open({
+                    server: 'my-app',
+                    version: 1,
+                    schema: {
+                        people: {
+                            key: {
+                                keyPath: 'id',
+                                autoIncrement: true
+                            },
+                            indexes: {
+                                num: {}
+                            }
+                        }
+                    }
+                }).then(function(s){
+                    server = s;
+                    write("Database created/Server Opened");
+                    /* Code for ${db.open} */
+                }).then(function () {
+                    server.people.add({
+                        firstName: 'name',
+                        num: parseInt(Math.random() * 10) % 2
+                    }).then(function (res) {
+                        write('Add item: ' + JSON.stringify(res));
+                        return server.people.query('num').all().execute();
+                    }).then(function (results) {
+                        console.log(results);
+                        write('Query item: ' + JSON.stringify(results));
+                        return server.people.remove(1);
+                    }).then(function (item) {
+                        write('Remove item: ' + item);
+                    });
+                });
+            </script>
+        </ul>
+        <pre id="log"></pre>
+    </body>
+</html>
