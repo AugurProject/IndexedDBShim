@@ -1,11 +1,11 @@
 {
   "name": "@augurproject/indexeddbshim",
-  "version": "6.1.0",
+  "version": "6.1.1",
   "author": "Parashuram <code@nparashuram.com>",
   "contributors": [
     "Brett Zamir"
   ],
-  "homepage": "https://github.com/axemclion/IndexedDBShim",
+  "homepage": "https://github.com/augurproject/IndexedDBShim",
   "description": "A polyfill for IndexedDB using WebSql",
   "scripts": {
     "license-badge": "license-badger --corrections --uncategorizedLicenseTemplate \"\\${license} (\\${name} (\\${version}))\" --filteredTypes=nonempty --textTemplate \"License types\n(project, deps, and bundled devDeps)\" --packageJson --production badges/licenses-badge.svg",
@@ -59,13 +59,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/axemclion/IndexedDBShim"
+    "url": "https://github.com/augurproject/IndexedDBShim"
   },
   "bugs": {
-    "url": "https://github.com/axemclion/IndexedDBShim/issues"
+    "url": "https://github.com/augurproject/IndexedDBShim/issues"
   },
-  "main": "dist/indexeddbshim-node.js",
-  "browser": "dist/indexeddbshim.min.js",
+  "main": "dist/@augurproject/indexeddbshim-node.js",
+  "browser": "dist/@augurproject/indexeddbshim.min.js",
   "module": "src/browser-noninvasive.js",
   "keywords": [
     "indexedDB",
